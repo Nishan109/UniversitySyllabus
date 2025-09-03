@@ -97,7 +97,7 @@ This University Syllabus application now includes full PWA functionality for off
 ## 🛠️ Development
 
 ### Testing PWA Features
-```bash
+\`\`\`bash
 # Build the app
 npm run build
 
@@ -105,13 +105,13 @@ npm run build
 npm start
 
 # Test in Chrome DevTools > Application > Service Workers
-```
+\`\`\`
 
 ### Updating Cache
 When you update the app, increment the cache version in `/public/sw.js`:
-```javascript
+\`\`\`javascript
 const CACHE_NAME = 'university-syllabus-v2'; // Update version
-```
+\`\`\`
 
 This ensures users get the latest content when they're back online.
 

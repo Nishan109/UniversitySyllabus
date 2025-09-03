@@ -71,7 +71,35 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="font-sans">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+          <div className="sticky top-0 z-50 border-b bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 mt-6 sm:mt-0">
+            <div className="mx-auto max-w-5xl px-3 sm:px-4">
+              <div className="flex items-center justify-end py-2">
+                <a
+                  href="https://v0-deadline-mate-landing-page.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors bg-primary text-primary-foreground hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary whitespace-nowrap"
+                  aria-label="Open DeadlineMate in a new tab"
+                >
+                  <img
+                    src="/images/deadlinemate-icon.png"
+                    alt="DeadlineMate"
+                    className="h-5 w-5 rounded"
+                    loading="lazy"
+                  />
+                  <span className="hidden sm:inline">Try deadlineMate</span>
+                  <span className="inline sm:hidden text-xs">Try deadlineMate</span>
+                </a>
+              </div>
+            </div>
+          </div>
           {children}
+          <footer className="border-t bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+            <div className="mx-auto max-w-5xl px-3 sm:px-4 py-6 text-center text-sm text-muted-foreground">
+              <span>Developer </span>
+              <strong className="text-foreground">Nishan Singh</strong>
+            </div>
+          </footer>
           <PWAInstall />
           <div className="fixed bottom-4 right-4 z-50 pointer-events-auto">
             <ModeToggle />

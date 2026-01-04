@@ -5,6 +5,7 @@ import { OfflineIndicator } from "@/components/offline-indicator"
 import { useEffect, useState } from "react"
 import dynamic from "next/dynamic"
 import ArrowRight from "@/components/icons/ArrowRight"
+import { ArrowLeft, ChevronRight, BookOpen } from "lucide-react" // added new icons
 
 type Course = {
   code: string
@@ -120,6 +121,31 @@ const electiveOptionsIII = [
   { code: "BCSED1-624", name: "Embedded Systems" },
 ]
 
+function CourseContentList({ content }: { content: string }) {
+  const items = content
+    .split(/[,;]/)
+    .map((item) => item.trim())
+    .filter(Boolean)
+
+  return (
+    <ul className="grid gap-2">
+      {items.map((item, idx) => (
+        <li
+          key={idx}
+          className="group/item flex items-start gap-3 p-3 rounded-xl border border-transparent hover:border-primary/20 hover:bg-primary/5 transition-all duration-300"
+        >
+          <div className="mt-1 flex-shrink-0 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center group-hover/item:bg-primary group-hover/item:scale-110 transition-all">
+            <ChevronRight className="w-2.5 h-2.5 text-primary group-hover/item:text-primary-foreground transition-colors" />
+          </div>
+          <span className="text-muted-foreground group-hover:text-foreground transition-colors text-xs leading-relaxed">
+            {item}
+          </span>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 function sum<T extends keyof Course>(k: T) {
   return courses.reduce((acc, c) => (typeof c[k] === "number" ? acc + (c[k] as number) : acc), 0)
 }
@@ -200,17 +226,20 @@ function SoftwareEngineeringDetails() {
               key={i}
               className="group p-6 rounded-2xl border border-border/40 bg-card/50 hover:bg-accent/20 transition-all"
             >
-              <div className="flex justify-between items-start mb-4">
-                <h4 className="font-bold text-foreground text-base tracking-tight">{unit.title}</h4>
-                <span className="text-[10px] font-mono font-bold bg-primary/10 text-primary px-2 py-1 rounded">
+              <div className="flex justify-between items-start mb-6">
+                <div className="space-y-1">
+                  <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
+                    Module 0{i + 1}
+                  </span>
+                  <h4 className="font-bold text-foreground text-lg tracking-tight">{unit.title}</h4>
+                </div>
+                <span className="text-[10px] font-mono font-bold bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">
                   {unit.hours}
                 </span>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-1">
                 {unit.topics.map((topic, j) => (
-                  <p key={j} className="text-muted-foreground leading-relaxed">
-                    {topic}
-                  </p>
+                  <CourseContentList key={j} content={topic} />
                 ))}
               </div>
             </div>
@@ -306,7 +335,7 @@ function ComputerNetworksDetails() {
           <span className="h-6 w-1 bg-primary rounded-full" />
           Course Contents
         </h3>
-        <div className="grid gap-4">
+        <div className="grid gap-6">
           {[
             {
               unit: "I",
@@ -339,18 +368,20 @@ function ComputerNetworksDetails() {
           ].map((item) => (
             <div
               key={item.unit}
-              className="group p-6 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
+              className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-6">
                 <div className="space-y-1">
                   <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
                     Unit {item.unit}
                   </span>
-                  <h4 className="text-base font-bold tracking-tight">{item.title}</h4>
+                  <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
                 </div>
-                <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{item.hours}</span>
+                <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
+                  {item.hours}
+                </span>
               </div>
-              <p className="text-muted-foreground text-xs leading-relaxed">{item.content}</p>
+              <CourseContentList content={item.content} />
             </div>
           ))}
         </div>
@@ -507,7 +538,7 @@ function MobileAppDevelopmentDetails() {
           <span className="h-6 w-1 bg-primary rounded-full" />
           Course Contents
         </h3>
-        <div className="grid gap-4">
+        <div className="grid gap-6">
           {[
             {
               unit: "I",
@@ -540,18 +571,20 @@ function MobileAppDevelopmentDetails() {
           ].map((item) => (
             <div
               key={item.unit}
-              className="group p-6 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
+              className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
             >
-              <div className="flex items-start justify-between mb-4">
+              <div className="flex items-start justify-between mb-6">
                 <div className="space-y-1">
                   <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
                     Unit {item.unit}
                   </span>
-                  <h4 className="text-base font-bold tracking-tight">{item.title}</h4>
+                  <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
                 </div>
-                <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{item.hours}</span>
+                <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
+                  {item.hours}
+                </span>
               </div>
-              <p className="text-muted-foreground text-xs leading-relaxed">{item.content}</p>
+              <CourseContentList content={item.content} />
             </div>
           ))}
         </div>
@@ -621,7 +654,7 @@ const MachineLearningDetails = () => (
         <span className="h-6 w-1 bg-primary rounded-full" />
         Course Contents
       </h3>
-      <div className="grid gap-4">
+      <div className="grid gap-6">
         {[
           {
             unit: "I",
@@ -654,18 +687,20 @@ const MachineLearningDetails = () => (
         ].map((item) => (
           <div
             key={item.unit}
-            className="group p-6 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
+            className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-6">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
                   Unit {item.unit}
                 </span>
-                <h4 className="text-base font-bold tracking-tight">{item.title}</h4>
+                <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
               </div>
-              <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{item.hours}</span>
+              <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
+                {item.hours}
+              </span>
             </div>
-            <p className="text-muted-foreground text-xs leading-relaxed">{item.content}</p>
+            <CourseContentList content={item.content} />
           </div>
         ))}
       </div>
@@ -766,7 +801,7 @@ const DataMiningDetails = () => (
         <span className="h-6 w-1 bg-primary rounded-full" />
         Course Contents
       </h3>
-      <div className="grid gap-4">
+      <div className="grid gap-6">
         {[
           {
             unit: "I",
@@ -799,18 +834,20 @@ const DataMiningDetails = () => (
         ].map((item) => (
           <div
             key={item.unit}
-            className="group p-6 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
+            className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-6">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
                   Unit {item.unit}
                 </span>
-                <h4 className="text-base font-bold tracking-tight">{item.title}</h4>
+                <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
               </div>
-              <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{item.hours}</span>
+              <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
+                {item.hours}
+              </span>
             </div>
-            <p className="text-muted-foreground text-xs leading-relaxed">{item.content}</p>
+            <CourseContentList content={item.content} />
           </div>
         ))}
       </div>
@@ -913,7 +950,7 @@ const CloudComputingDetails = () => (
         <span className="h-6 w-1 bg-primary rounded-full" />
         Course Contents
       </h3>
-      <div className="grid gap-4">
+      <div className="grid gap-6">
         {[
           {
             unit: "I",
@@ -927,7 +964,7 @@ const CloudComputingDetails = () => (
             hours: "12 Hrs",
             title: "Hadoop Ecosystem",
             content:
-              "Hadoop - Apache Hadoop Architecture, Hadoop YARN, Comparison of Traditional system & Hadoop Ecosystem, Installation steps of Hadoop (1.x), Moving Data in and out of Hadoop, need for Record Reader and Record writer, understanding inputs and outputs file format of Map Reduce.",
+              "Hadoop - Apache Hadoop Architecture, Hadoop YARN, Comparison of Traditional system & Hadoop Ecosystem, Installation steps of Hadoop (1.x), Moving Data in and out of Hadoop, need for Record Reader and Record writer, understanding inputs and outputs, java for map reduce. Hadoop (2.x) - architecture, Comparison with Hadoop (1.x).",
           },
           {
             unit: "III",
@@ -945,18 +982,20 @@ const CloudComputingDetails = () => (
         ].map((item) => (
           <div
             key={item.unit}
-            className="group p-6 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
+            className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
           >
-            <div className="flex items-start justify-between mb-4">
+            <div className="flex items-start justify-between mb-6">
               <div className="space-y-1">
                 <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
                   Unit {item.unit}
                 </span>
-                <h4 className="text-base font-bold tracking-tight">{item.title}</h4>
+                <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
               </div>
-              <span className="text-xs font-mono text-muted-foreground whitespace-nowrap">{item.hours}</span>
+              <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
+                {item.hours}
+              </span>
             </div>
-            <p className="text-muted-foreground text-xs leading-relaxed">{item.content}</p>
+            <CourseContentList content={item.content} />
           </div>
         ))}
       </div>
@@ -1149,26 +1188,39 @@ function SyllabusPageComponent() {
                         </Button>
                       </DialogTrigger>
                       <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
-                        <DialogHeader className="p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card">
-                          <div className="space-y-1">
-                            <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
-                              Subject File
-                            </p>
-                            <DialogTitle className="text-3xl font-bold">{c.name}</DialogTitle>
+                        <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                          <div className="flex items-center gap-4">
+                            <Button
+                              variant="ghost"
+                              size="icon"
+                              className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                              onClick={() => {
+                                if (c.code === "BCSES1-601") setSeOpen(false)
+                                else if (c.code === "BCSES1-602") setCnOpen(false)
+                                else setCnLabOpen(false)
+                              }}
+                            >
+                              <ArrowLeft className="h-4 w-4" />
+                            </Button>
+                            <div className="space-y-0.5">
+                              <div className="flex items-center gap-2">
+                                <BookOpen className="w-3 h-3 text-primary" />
+                                <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                  Subject File
+                                </p>
+                              </div>
+                              <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                {c.name}
+                              </DialogTitle>
+                            </div>
                           </div>
-                          <Button
-                            variant="ghost"
-                            className="h-12 w-12 rounded-lg border border-border/50 hover:bg-accent font-mono text-xs shadow-sm"
-                            onClick={() => {
-                              if (c.code === "BCSES1-601") setSeOpen(false)
-                              else if (c.code === "BCSES1-602") setCnOpen(false)
-                              else setCnLabOpen(false)
-                            }}
-                          >
-                            ESC
-                          </Button>
+                          <div className="hidden sm:block">
+                            <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                              {c.code}
+                            </span>
+                          </div>
                         </DialogHeader>
-                        <div className="flex-1 overflow-y-auto p-8 sm:p-12 modal-scroll">
+                        <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
                           {c.code === "BCSES1-601" && <SoftwareEngineeringDetails />}
                           {c.code === "BCSES1-602" && <ComputerNetworksDetails />}
                           {c.code === "BCSES1-603" && <ComputerNetworkLabDetails />}
@@ -1222,22 +1274,35 @@ function SyllabusPageComponent() {
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
-                          <DialogHeader className="p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card">
-                            <div className="space-y-1">
-                              <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
-                                Elective Archive
-                              </p>
-                              <DialogTitle className="text-3xl font-bold">{opt.name}</DialogTitle>
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setMadOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
                             </div>
-                            <Button
-                              variant="ghost"
-                              className="h-12 w-12 rounded-lg border border-border/50 hover:bg-accent font-mono text-xs shadow-sm"
-                              onClick={() => setMadOpen(false)}
-                            >
-                              ESC
-                            </Button>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
                           </DialogHeader>
-                          <div className="flex-1 overflow-y-auto p-8 sm:p-12 modal-scroll">
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
                             <MobileAppDevelopmentDetails />
                           </div>
                         </DialogContent>
@@ -1256,22 +1321,35 @@ function SyllabusPageComponent() {
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
-                          <DialogHeader className="p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card">
-                            <div className="space-y-1">
-                              <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
-                                Elective Archive
-                              </p>
-                              <DialogTitle className="text-3xl font-bold">{opt.name}</DialogTitle>
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setMlOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
                             </div>
-                            <Button
-                              variant="ghost"
-                              className="h-12 w-12 rounded-lg border border-border/50 hover:bg-accent font-mono text-xs shadow-sm"
-                              onClick={() => setMlOpen(false)}
-                            >
-                              ESC
-                            </Button>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
                           </DialogHeader>
-                          <div className="flex-1 overflow-y-auto p-8 sm:p-12 modal-scroll">
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
                             <MachineLearningDetails />
                           </div>
                         </DialogContent>
@@ -1290,22 +1368,35 @@ function SyllabusPageComponent() {
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
-                          <DialogHeader className="p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card">
-                            <div className="space-y-1">
-                              <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
-                                Elective Archive
-                              </p>
-                              <DialogTitle className="text-3xl font-bold">{opt.name}</DialogTitle>
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setDmOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
                             </div>
-                            <Button
-                              variant="ghost"
-                              className="h-12 w-12 rounded-lg border border-border/50 hover:bg-accent font-mono text-xs shadow-sm"
-                              onClick={() => setDmOpen(false)}
-                            >
-                              ESC
-                            </Button>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
                           </DialogHeader>
-                          <div className="flex-1 overflow-y-auto p-8 sm:p-12 modal-scroll">
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
                             <DataMiningDetails />
                           </div>
                         </DialogContent>
@@ -1324,22 +1415,35 @@ function SyllabusPageComponent() {
                           </Button>
                         </DialogTrigger>
                         <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
-                          <DialogHeader className="p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card">
-                            <div className="space-y-1">
-                              <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
-                                Elective Archive
-                              </p>
-                              <DialogTitle className="text-3xl font-bold">{opt.name}</DialogTitle>
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setCcOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
                             </div>
-                            <Button
-                              variant="ghost"
-                              className="h-12 w-12 rounded-lg border border-border/50 hover:bg-accent font-mono text-xs shadow-sm"
-                              onClick={() => setCcOpen(false)}
-                            >
-                              ESC
-                            </Button>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
                           </DialogHeader>
-                          <div className="flex-1 overflow-y-auto p-8 sm:p-12 modal-scroll">
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
                             <CloudComputingDetails />
                           </div>
                         </DialogContent>

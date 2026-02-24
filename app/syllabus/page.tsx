@@ -119,7 +119,12 @@ const electiveOptionsIII = [
   { code: "BCSED1-622", name: "Cloud Computing" },
   { code: "BCSED1-623", name: "Parallel Processing" },
   { code: "BCSED1-624", name: "Embedded Systems" },
-]
+  ]
+
+const electiveOptionsIV = [
+  { code: "BELE0-F94", name: "Renewable Energy Sources" },
+  { code: "BMEE0-F95", name: "Robotics Engineering" },
+  ]
 
 function CourseContentList({ content }: { content: string }) {
   const items = content
@@ -1038,6 +1043,279 @@ const CloudComputingDetails = () => (
   </div>
 )
 
+const RenewableEnergySourcesDetails = () => (
+  <div className="space-y-12">
+    <section className="grid sm:grid-cols-3 gap-6">
+      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
+        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Subject</h3>
+        <p className="font-mono font-bold">Renewable Energy Sources</p>
+        <p className="text-[10px] text-muted-foreground font-mono">BELE0-F94</p>
+      </div>
+      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
+        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Duration</h3>
+        <p className="font-mono font-bold">36 Hours</p>
+      </div>
+      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
+        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Semester</h3>
+        <p className="font-mono font-bold">6th</p>
+      </div>
+    </section>
+
+    <div className="grid md:grid-cols-2 gap-12">
+      <section className="space-y-4">
+        <h3 className="text-lg font-bold flex items-center gap-2">
+          <span className="h-6 w-1 bg-primary rounded-full" />
+          Course Objective
+        </h3>
+        <ul className="space-y-3 list-none">
+          {[
+            "To obtain knowledge about renewable energy sources and solar energy and their utilization.",
+            "To introduce to wind energy conversion and bio-mass energy conversion systems.",
+            "To introduce to geothermal energy and energy from ocean. To make them aware of hydrogen energy sources.",
+          ].map((obj, i) => (
+            <li key={i} className="flex gap-3 text-muted-foreground">
+              <span className="text-primary font-mono font-bold">{i + 1}.</span>
+              {obj}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-lg font-bold flex items-center gap-2">
+          <span className="h-6 w-1 bg-primary rounded-full" />
+          Course Outcomes
+        </h3>
+        <ul className="space-y-3 list-none">
+          {[
+            "Students will get knowledge about utilization of renewable energy sources and solar energy.",
+            "They will learn about wind energy conversion and bio-mass energy conversion systems.",
+            "They will become aware about geothermal energy, energy from ocean and hydrogen energy sources.",
+          ].map((out, i) => (
+            <li key={i} className="flex gap-3 text-muted-foreground">
+              <span className="text-primary font-mono font-bold">{i + 1}.</span>
+              {out}
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+    <section className="space-y-6">
+      <h3 className="text-lg font-bold flex items-center gap-2">
+        <span className="h-6 w-1 bg-primary rounded-full" />
+        Course Contents
+      </h3>
+      <div className="grid gap-6">
+        {[
+          {
+            unit: "I",
+            hours: "13 Hrs",
+            title: "Solar Energy",
+            content:
+              "Conventional energy sources and availability, Introduction to new energy techniques & renewable energy sources; Solar Energy, Solar constant, Radiation geometry, Solar energy collectors, Concentrated and flat plate, Energy balance and collector efficiency, Solar energy storage, Application to space heating, distillation, cooling and greenhouse effect.",
+          },
+          {
+            unit: "II",
+            hours: "12 Hrs",
+            title: "Wind and Bio-Energy",
+            content:
+              "Basic principle of wind energy conversion, site selection, analysis of aerodynamic forces acting on wind mill blades and estimation of power output. Biomass conversion technology, photosynthesis, biogas plant, thermal gasification.",
+          },
+          {
+            unit: "III",
+            hours: "10 Hrs",
+            title: "Geothermal Energy",
+            content:
+              "Sources- hydrothermal, hot dry rock, geothermal fossil system, movers for geothermal energy.",
+          },
+          {
+            unit: "IV",
+            hours: "10 Hrs",
+            title: "Energy from Ocean",
+            content:
+              "Ocean thermal electric conversion, energy from tides, small hydroelectric development.",
+          },
+          {
+            unit: "V",
+            hours: "10 Hrs",
+            title: "Hydrogen Energy Sources",
+            content:
+              "Introduction of hydrogen production methods, storage, utilization, magneto hydrodynamic power, thermoionic generation, nuclear fusion energy.",
+          },
+        ].map((item) => (
+          <div
+            key={item.unit}
+            className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
+          >
+            <div className="flex items-start justify-between mb-6">
+              <div className="space-y-1">
+                <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
+                  Unit {item.unit}
+                </span>
+                <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
+              </div>
+              <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
+                {item.hours}
+              </span>
+            </div>
+            <CourseContentList content={item.content} />
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <section className="space-y-4">
+      <h3 className="text-lg font-bold flex items-center gap-2">
+        <span className="h-6 w-1 bg-primary rounded-full" />
+        Recommended Books
+      </h3>
+      <div className="grid sm:grid-cols-2 gap-4">
+        {[
+          {
+            author: "G.D. Rai",
+            title: "Non-Conventional Energy Sources",
+            publisher: "Khanna Publishers, Delhi, 2011",
+          },
+          {
+            author: "S. Rao, B.B. Parulekar",
+            title: "Non-Conventional Renewable and Conventional",
+            publisher: "Khanna Publishers, Delhi",
+          },
+        ].map((book, i) => (
+          <div key={i} className="p-4 rounded-xl border border-border/50 bg-accent/10 space-y-1">
+            <h4 className="font-bold text-sm">
+              {i + 1}. {book.title}
+            </h4>
+            <p className="text-xs text-muted-foreground">
+              {book.author}, {book.publisher}
+            </p>
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+)
+
+const RoboticsEngineeringDetails = () => (
+  <div className="space-y-12">
+    <section className="grid sm:grid-cols-3 gap-6">
+      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
+        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Subject</h3>
+        <p className="font-mono font-bold">Robotics Engineering</p>
+        <p className="text-[10px] text-muted-foreground font-mono">BMEE0-F95</p>
+      </div>
+      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
+        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Duration</h3>
+        <p className="font-mono font-bold">45 Hours</p>
+      </div>
+      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
+        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Semester</h3>
+        <p className="font-mono font-bold">6th</p>
+      </div>
+    </section>
+
+    <div className="grid md:grid-cols-2 gap-12">
+      <section className="space-y-4">
+        <h3 className="text-lg font-bold flex items-center gap-2">
+          <span className="h-6 w-1 bg-primary rounded-full" />
+          Course Objectives
+        </h3>
+        <ul className="space-y-3 list-none">
+          {[
+            "To introduce the concept, scope, and socio-economic considerations of automation, emphasizing low-cost automation techniques.",
+            "To provide knowledge of fluid power control systems, including hydraulic and pneumatic components, circuits, and logic design.",
+            "To explore the fundamentals of electrical and electronic controls, including PLCs, sensors, and the integration of mechanical systems with computer and electronics.",
+            "To familiarize students with robotics, their classifications, components, sensors, and industrial applications for various operations.",
+          ].map((obj, i) => (
+            <li key={i} className="flex gap-3 text-muted-foreground">
+              <span className="text-primary font-mono font-bold">{i + 1}.</span>
+              {obj}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="space-y-4">
+        <h3 className="text-lg font-bold flex items-center gap-2">
+          <span className="h-6 w-1 bg-primary rounded-full" />
+          Course Outcomes
+        </h3>
+        <ul className="space-y-3 list-none">
+          {[
+            "Explain the principles and socio-economic considerations of automation, including the use of low-cost automation solutions.",
+            "Design and analyze fluid power circuits, including hydraulic and pneumatic systems, with an understanding of their components and performance characteristics.",
+            "Apply knowledge of electrical and electronic controls, including PLCs and sensors, to integrate and automate mechanical systems.",
+            "Demonstrate an understanding of robotic systems, including their classifications, sensors, and end effectors, and analyze their industrial applications in material transfer, assembly, and other operations.",
+          ].map((out, i) => (
+            <li key={i} className="flex gap-3 text-muted-foreground">
+              <span className="text-primary font-mono font-bold">{i + 1}.</span>
+              {out}
+            </li>
+          ))}
+        </ul>
+      </section>
+    </div>
+
+    <section className="space-y-6">
+      <h3 className="text-lg font-bold flex items-center gap-2">
+        <span className="h-6 w-1 bg-primary rounded-full" />
+        Course Contents
+      </h3>
+      <div className="grid gap-6">
+        {[
+          {
+            unit: "I",
+            hours: "12 Hrs",
+            title: "Introduction & Fluid Power Control",
+            content:
+              "Concept and scope of automation: Socio-economic consideration: Low cost automation. Fluid power control elements and standard graphical symbols. Construction and performance of fluid power generators. Hydraulic and pneumatic cylinders - construction, design and mounting. Hydraulic and pneumatic valves for pressure, flow and direction control. Servo valves and servo systems with mechanical feedback, servo differential equation and its solution for step position input; Basic hydraulic and pneumatic circuits.",
+          },
+          {
+            unit: "II",
+            hours: "15 Hrs",
+            title: "Pneumatic Logic Circuits & Fluidics",
+            content:
+              "Design of pneumatic logic circuits for a given time displacement diagram or sequence of operations. Boolean algebra. Truth tables. Conda effect. Fluidic elements - their construction working and performance characteristics. Elementary fluidic circuits.",
+          },
+          {
+            unit: "III",
+            hours: "10 Hrs",
+            title: "Transfer Devices, Feeders & Controls",
+            content:
+              "Classification, Construction details and application of transfer devices and feeders (Vibratory bowl feeder, reciprocating tube feeder and centrifugal hopper feeder). Electrical and Electronic Controls: Introduction to electrical and electronic controls such as electromagnetic controllers - transducers and sensors, microprocessors, programmable logic controllers (PLC). Integration of mechanical systems with electrical, electronic and computer systems.",
+          },
+          {
+            unit: "IV",
+            hours: "8 Hrs",
+            title: "Robotics & Industrial Applications",
+            content:
+              "Introduction, classification based on geometry, devices, control and path movement. End effectors - types and applications. Sensors - types and applications. Concept of Robotic/Machine vision, Teach pendant. Industrial Applications of Robots for material transfer, machine loading / unloading, welding, assembly and spray painting operations.",
+          },
+        ].map((item) => (
+          <div
+            key={item.unit}
+            className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
+          >
+            <div className="flex items-start justify-between mb-6">
+              <div className="space-y-1">
+                <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
+                  Unit {item.unit}
+                </span>
+                <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
+              </div>
+              <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
+                {item.hours}
+              </span>
+            </div>
+            <CourseContentList content={item.content} />
+          </div>
+        ))}
+      </div>
+    </section>
+  </div>
+)
+
 function SyllabusPageComponent() {
   const [seOpen, setSeOpen] = useState(false)
   const [cnOpen, setCnOpen] = useState(false)
@@ -1047,16 +1325,18 @@ function SyllabusPageComponent() {
   const [mlOpen, setMlOpen] = useState(false)
   const [dmOpen, setDmOpen] = useState(false)
   const [ccOpen, setCcOpen] = useState(false)
+  const [resOpen, setResOpen] = useState(false)
+  const [robOpen, setRobOpen] = useState(false)
 
   useEffect(() => {
-    const anyOpen = seOpen || cnOpen || cnLabOpen || madOpen || mlOpen || dmOpen || ccOpen
+    const anyOpen = seOpen || cnOpen || cnLabOpen || madOpen || mlOpen || dmOpen || ccOpen || resOpen || robOpen
     if (!anyOpen) return
     const prevBodyOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
     return () => {
       document.body.style.overflow = prevBodyOverflow
     }
-  }, [seOpen, cnOpen, cnLabOpen, madOpen, mlOpen, dmOpen, ccOpen])
+  }, [seOpen, cnOpen, cnLabOpen, madOpen, mlOpen, dmOpen, ccOpen, resOpen, robOpen])
 
   const totals = {
     courses: courses.length,
@@ -1236,10 +1516,11 @@ function SyllabusPageComponent() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-32 border-t border-border/40">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
             { group: "Group II", options: electiveOptionsII, color: "from-primary/10 to-blue-50/50" },
             { group: "Group III", options: electiveOptionsIII, color: "from-indigo-500/10 to-purple-50/50" },
+            { group: "Group IV", options: electiveOptionsIV, color: "from-amber-500/10 to-orange-50/50" },
           ].map((item, i) => (
             <div
               key={i}
@@ -1445,6 +1726,100 @@ function SyllabusPageComponent() {
                           </DialogHeader>
                           <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
                             <CloudComputingDetails />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    )}
+                    {opt.code === "BELE0-F94" && (
+                      <Dialog open={resOpen} onOpenChange={setResOpen}>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 rounded-full border border-border/50 hover:bg-primary hover:text-primary-foreground group/btn shadow-sm text-[10px] font-bold uppercase tracking-wider"
+                          >
+                            Details
+                            <ArrowRight className="ml-1.5 h-3 w-3 group-hover/btn:translate-x-0.5 transition-transform" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setResOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
+                            </div>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
+                          </DialogHeader>
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
+                            <RenewableEnergySourcesDetails />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    )}
+                    {opt.code === "BMEE0-F95" && (
+                      <Dialog open={robOpen} onOpenChange={setRobOpen}>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 rounded-full border border-border/50 hover:bg-primary hover:text-primary-foreground group/btn shadow-sm text-[10px] font-bold uppercase tracking-wider"
+                          >
+                            Details
+                            <ArrowRight className="ml-1.5 h-3 w-3 group-hover/btn:translate-x-0.5 transition-transform" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setRobOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
+                            </div>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
+                          </DialogHeader>
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
+                            <RoboticsEngineeringDetails />
                           </div>
                         </DialogContent>
                       </Dialog>

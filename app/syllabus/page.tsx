@@ -364,6 +364,10 @@ function SyllabusPageComponent() {
     }
   }, [seOpen, cnOpen, nlOpen, madOpen, mlOpen, dmOpen, ccOpen, resOpen, robOpen, dosOpen])
 
+  const sum = (field: string): number => {
+    return courses.reduce((acc, course) => acc + (course[field as keyof typeof course] as number || 0), 0)
+  }
+
   const totals = {
     courses: courses.length,
     theory: courses.filter((c) => c.kind === "theory").length,

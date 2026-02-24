@@ -135,6 +135,190 @@ const electiveGroupsData = [
   },
 ]
 
+function SoftwareEngineeringDetails() {
+  const objectives = [
+    "To understand the fundamentals of software engineering and software development life cycle.",
+    "To learn various design patterns and architectural principles.",
+    "To understand software testing, quality assurance, and maintenance strategies.",
+    "To explore emerging technologies and best practices in software development.",
+  ]
+
+  const units = [
+    {
+      name: "UNIT-I (15 Hrs.)",
+      title: "Software Engineering Fundamentals",
+      content: "Software engineering principles, SDLC models: Waterfall, Iterative, Spiral, Agile. Requirements analysis and specification, System design principles, Cohesion and coupling, Design patterns: Singleton, Factory, Observer, MVC."
+    },
+    {
+      name: "UNIT-II (15 Hrs.)",
+      title: "Software Architecture & Design",
+      content: "Architectural patterns: Layered, MVC, Microservices. API design principles, REST and GraphQL. Database design and normalization. Security considerations in design, Scalability and performance optimization."
+    },
+    {
+      name: "UNIT-III (15 Hrs.)",
+      title: "Software Testing & Quality",
+      content: "Unit testing, Integration testing, System testing, UAT. Test-driven development, Continuous integration and deployment. Code quality metrics, Code review best practices, Bug tracking and management."
+    },
+    {
+      name: "UNIT-IV (15 Hrs.)",
+      title: "Project Management & Maintenance",
+      content: "Project planning and scheduling, Resource allocation, Risk management. Maintenance: Corrective, Adaptive, Perfective. Documentation standards, Team collaboration tools, DevOps practices."
+    },
+  ]
+
+  return (
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Objectives</h3>
+        <div className="space-y-2">
+          {objectives.map((obj, idx) => (
+            <div key={idx} className="flex gap-3 p-3 rounded-lg border border-border/50 hover:bg-accent/5 hover:border-primary/30 transition-all group cursor-pointer">
+              <span className="text-primary font-bold text-sm mt-0.5 min-w-6 group-hover:scale-110 transition-transform">{idx + 1}.</span>
+              <p className="text-sm text-foreground/80 leading-relaxed">{obj}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Contents</h3>
+        <div className="space-y-3">
+          {units.map((unit, idx) => (
+            <div key={idx} className="p-4 rounded-lg border border-border/50 hover:border-primary/30 hover:bg-card/50 transition-all group">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <div>
+                  <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide bg-primary/10 text-primary rounded-full border border-primary/20 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    {unit.name}
+                  </span>
+                  <h4 className="text-base md:text-lg font-bold mt-2 text-foreground">{unit.title}</h4>
+                </div>
+              </div>
+              <p className="text-sm text-foreground/70 leading-relaxed ml-0">{unit.content}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ComputerNetworksDetails() {
+  const objectives = [
+    "To understand the fundamentals of computer networks and network protocols.",
+    "To learn about OSI model, TCP/IP stack, and network architectures.",
+    "To understand routing, switching, and network performance optimization.",
+    "To explore network security, firewalls, and VPN technologies.",
+  ]
+
+  const units = [
+    {
+      name: "UNIT-I (15 Hrs.)",
+      title: "Data Communication Components",
+      content: "Representation of data and its flow. Networks, Various Connection Topology, Protocols and Standards, OSI model, Transmission Media, LAN- Wired LAN, Wireless LANs, Connecting LAN and Virtual LAN. Techniques for Bandwidth utilization: Multiplexing, Frequency division, Time division and Wave division, Concepts on spread spectrum."
+    },
+    {
+      name: "UNIT-II (12 Hrs.)",
+      title: "Network and Transport Layers",
+      content: "Routing protocols: Distance vector, Link state. Routing algorithms: Dijkstra, Bellman-Ford. Router architecture and functions. IP addressing, Subnetting, CIDR. ARP, ICMP protocols. Transport layer protocols: TCP, UDP. Flow control and congestion control mechanisms."
+    },
+    {
+      name: "UNIT-III (10 Hrs.)",
+      title: "Application Layer & Services",
+      content: "DNS: Domain name system and resolution process. Email services: SMTP, POP3, IMAP. File Transfer Protocol (FTP), SFTP. Web services: HTTP, HTTPS. Session management and cookies. Telnet and SSH protocols."
+    },
+    {
+      name: "UNIT-IV (11 Hrs.)",
+      title: "Network Security & Advanced Topics",
+      content: "Cryptography: Symmetric and asymmetric encryption. Public key infrastructure and digital certificates. Authentication and authorization. Firewall design and configuration. VPN technologies. Network monitoring and management. SNMP protocol. Quality of Service (QoS) in networks."
+    },
+  ]
+
+  return (
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Objectives</h3>
+        <div className="space-y-2">
+          {objectives.map((obj, idx) => (
+            <div key={idx} className="flex gap-3 p-3 rounded-lg border border-border/50 hover:bg-accent/5 hover:border-primary/30 transition-all group cursor-pointer">
+              <span className="text-primary font-bold text-sm mt-0.5 min-w-6 group-hover:scale-110 transition-transform">{idx + 1}.</span>
+              <p className="text-sm text-foreground/80 leading-relaxed">{obj}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Contents</h3>
+        <div className="space-y-3">
+          {units.map((unit, idx) => (
+            <div key={idx} className="p-4 rounded-lg border border-border/50 hover:border-primary/30 hover:bg-card/50 transition-all group">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <div>
+                  <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide bg-primary/10 text-primary rounded-full border border-primary/20 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    {unit.name}
+                  </span>
+                  <h4 className="text-base md:text-lg font-bold mt-2 text-foreground">{unit.title}</h4>
+                </div>
+              </div>
+              <p className="text-sm text-foreground/70 leading-relaxed ml-0">{unit.content}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
+function ComputerNetworkLabDetails() {
+  const objectives = [
+    "To become familiarize with different networking components.",
+    "To learn the concept of data transmission using different cables.",
+    "To learn different topologies and implement file sharing.",
+    "To implement different networks.",
+  ]
+
+  const practicals = [
+    "Write specifications of latest desktops and laptops.",
+    "Familiarization with Networking Components and devices: LAN Adapters, Hubs, Switches, Routers etc.",
+    "Familiarization with Transmission media and Tools: Co-axial cable, UTP Cable, Crimping Tool, Connectors etc.",
+    "To Prepare straight and cross cables.",
+    "Study of various LAN topologies and their creation using network devices, cables and computers.",
+    "Configuration of TCP/IP Protocols in Windows and Linux.",
+    "Implementation of file and printer sharing.",
+    "Designing and implementing Class A, B, C Networks.",
+    "Subnet planning and its implementation.",
+    "Installation of ftp server and client.",
+  ]
+
+  return (
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Objectives</h3>
+        <div className="space-y-2">
+          {objectives.map((obj, idx) => (
+            <div key={idx} className="flex gap-3 p-3 rounded-lg border border-border/50 hover:bg-accent/5 hover:border-primary/30 transition-all group cursor-pointer">
+              <span className="text-primary font-bold text-sm mt-0.5 min-w-6 group-hover:scale-110 transition-transform">{idx + 1}.</span>
+              <p className="text-sm text-foreground/80 leading-relaxed">{obj}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Practicals</h3>
+        <div className="space-y-2">
+          {practicals.map((practical, idx) => (
+            <div key={idx} className="flex gap-3 p-3 rounded-lg border border-border/50 hover:bg-accent/5 hover:border-primary/30 transition-all group cursor-pointer">
+              <span className="text-primary font-bold text-sm mt-0.5 min-w-6 group-hover:scale-110 transition-transform">{idx + 1}.</span>
+              <p className="text-sm text-foreground/80 leading-relaxed">{practical}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function RenewableEnergySourcesToDetails() {
   const contentItems = [
     "To obtain knowledge about renewable energy sources and solar energy and their utilization.",

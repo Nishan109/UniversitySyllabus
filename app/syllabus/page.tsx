@@ -103,950 +103,256 @@ const courses: Course[] = [
     ext: 60,
     total: 100,
     credits: 3,
-    kind: "theory",
+    kind: "elective",
   },
 ]
 
-const electiveOptionsII = [
-  { code: "BCSED1-611", name: "Mobile Application Development" },
-  { code: "BCSED1-612", name: "Machine Learning" },
-  { code: "BCSED1-613", name: "Distributed Systems" },
-  { code: "BCSED1-614", name: "Signals and Systems" },
+const electiveGroupsData = [
+  {
+    name: "Elective-II (Select any One)",
+    electives: [
+      { code: "BCSED1-611", name: "Mobile Application Development" },
+      { code: "BCSED1-612", name: "Machine Learning" },
+      { code: "BCSED1-613", name: "Distributed Systems" },
+      { code: "BCSED1-614", name: "Signals and Systems" },
+    ],
+  },
+  {
+    name: "Elective-III (Select any One)",
+    electives: [
+      { code: "BCSED1-621", name: "Data Mining" },
+      { code: "BCSED1-622", name: "Cloud Computing" },
+      { code: "BCSED1-623", name: "Parallel Processing" },
+      { code: "BCSED1-624", name: "Embedded Systems" },
+    ],
+  },
+  {
+    name: "Elective-IV (Select any One)",
+    electives: [
+      { code: "BELE0-F94", name: "Renewable Energy Sources" },
+      { code: "BMEE0-F95", name: "Robotics Engineering" },
+    ],
+  },
 ]
 
-const electiveOptionsIII = [
-  { code: "BCSED1-621", name: "Data Mining" },
-  { code: "BCSED1-622", name: "Cloud Computing" },
-  { code: "BCSED1-623", name: "Parallel Processing" },
-  { code: "BCSED1-624", name: "Embedded Systems" },
-]
-
-function CourseContentList({ content }: { content: string }) {
-  const items = content
-    .split(/[,;]/)
-    .map((item) => item.trim())
-    .filter(Boolean)
+function RenewableEnergySourcesToDetails() {
+  const contentItems = [
+    "To obtain knowledge about renewable energy sources and solar energy and their utilization.",
+    "To introduce to wind energy conversion and bio-mass energy conversion systems.",
+    "To introduce to geothermal energy and energy from ocean. To make them aware of hydrogen energy sources.",
+  ]
+  
+  const units = [
+    {
+      name: "UNIT-I (13 Hrs.)",
+      title: "Solar Energy",
+      content: "Conventional energy sources and availability, Introduction to new energy techniques & renewable energy sources; Solar Energy, Solar constant, Radiation geometry, Solar energy collectors, Concentrated and flat plate, Energy balance and collector efficiency, Solar energy storage, Application to space heating, distillation, cooling and greenhouse effect."
+    },
+    {
+      name: "UNIT-II (12 Hrs.)",
+      title: "Wind and Bio-Energy",
+      content: "Basic principle of wind energy conversion, site selection, analysis of aerodynamic forces acting on wind mill blades and estimation of power output. Biomass conversion technology, photosynthesis, biogas plant, thermal gasification."
+    },
+    {
+      name: "UNIT-III (10 Hrs.)",
+      title: "Geothermal Energy",
+      content: "Sources- hydrothermal, hot dry rock, geothermal fossil system, movers for geothermal energy."
+    },
+    {
+      name: "UNIT-IV (10 Hrs.)",
+      title: "Energy from Ocean",
+      content: "Ocean thermal electric conversion, energy from tides, small hydroelectric development."
+    },
+    {
+      name: "UNIT-V (10 Hrs.)",
+      title: "Hydrogen Energy Sources",
+      content: "Introduction of hydrogen production methods, storage, utilization, magneto hydrodynamic power, thermoionic generation, nuclear fusion energy."
+    },
+  ]
 
   return (
-    <ul className="grid gap-2">
-      {items.map((item, idx) => (
-        <li
-          key={idx}
-          className="group/item flex items-start gap-3 p-3 rounded-xl border border-transparent hover:border-primary/20 hover:bg-primary/5 transition-all duration-300"
-        >
-          <div className="mt-1 flex-shrink-0 w-4 h-4 rounded-full bg-primary/10 flex items-center justify-center group-hover/item:bg-primary group-hover/item:scale-110 transition-all">
-            <ChevronRight className="w-2.5 h-2.5 text-primary group-hover/item:text-primary-foreground transition-colors" />
-          </div>
-          <span className="text-muted-foreground group-hover:text-foreground transition-colors text-xs leading-relaxed">
-            {item}
-          </span>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
-function sum<T extends keyof Course>(k: T) {
-  return courses.reduce((acc, c) => (typeof c[k] === "number" ? acc + (c[k] as number) : acc), 0)
-}
-
-function SoftwareEngineeringDetails() {
-  return (
-    <div className="space-y-12 text-sm leading-relaxed">
-      <section className="grid gap-8 sm:grid-cols-2">
-        <div className="space-y-4 p-6 rounded-2xl bg-accent/30 border border-border/50">
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Course Objective</h3>
-          <p className="text-foreground leading-relaxed">
-            To enable the students to learn the principles and methodologies followed to develop good software.
-          </p>
-        </div>
-        <div className="space-y-4 p-6 rounded-2xl bg-accent/30 border border-border/50">
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Course Outcomes</h3>
-          <ul className="space-y-2 list-none p-0 m-0">
-            {[
-              "Analyze software models and evolution principles.",
-              "Understand analysis and design steps of development.",
-              "Master coding, testing, and reliability protocols.",
-              "Highlight software management activities and terms.",
-            ].map((outcome, i) => (
-              <li key={i} className="flex gap-3">
-                <span className="text-primary font-mono text-[10px] mt-0.5">0{i + 1}</span>
-                <span className="text-foreground/80">{outcome}</span>
-              </li>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <div className="space-y-2">
+          <h3 className="text-lg md:text-xl font-bold text-foreground">Course Objectives</h3>
+          <div className="space-y-2">
+            {contentItems.map((item, idx) => (
+              <div key={idx} className="flex gap-3 p-3 rounded-lg border border-border/50 hover:bg-accent/5 hover:border-primary/30 transition-all group cursor-pointer">
+                <span className="text-primary font-bold text-sm mt-0.5 min-w-6 group-hover:scale-110 transition-transform">{idx + 1}.</span>
+                <p className="text-sm text-foreground/80 leading-relaxed">{item}</p>
+              </div>
             ))}
-          </ul>
+          </div>
         </div>
-      </section>
+      </div>
 
-      <section className="space-y-8">
-        <div className="flex items-center gap-4">
-          <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground whitespace-nowrap">
-            Detailed Contents
-          </h3>
-          <div className="h-px w-full bg-border/40" />
-        </div>
-
-        <div className="grid gap-6">
-          {[
-            {
-              title: "UNIT-I: Introduction & Life Cycle Models",
-              hours: "10 Hrs",
-              topics: [
-                "Evolution and impact of Software engineering, Software crisis, Principles of Software Engineering, Feasibility study",
-                "Software Life Cycle Models: Waterfall, prototyping, Evolutionary, and Spiral models, Comparison of software models.",
-              ],
-            },
-            {
-              title: "UNIT-II: Scheduling, Planning & Requirements",
-              hours: "11 Hrs",
-              topics: [
-                "Scheduling and Planning: Management Activities, Project planning and control, cost estimation, project scheduling using PERT and GANTT charts.",
-                "Requirement Analysis: Functional and Non-functional requirements, Requirements gathering, Requirements analysis and specification.",
-              ],
-            },
-            {
-              title: "UNIT-III: Software Design, Coding & Testing",
-              hours: "14 Hrs",
-              topics: [
-                "Software Design: Basic principles of software design, modularity, cohesion, coupling and layering, function-oriented software design: DFD and Structure chart, object modeling using UML, Object-oriented software development, Design specifications, Design metrics, Verification and validation, User Interface design.",
-                "Coding: Coding standards and Code review techniques, Coding styles, Coding metrics.",
-                "Software Testing: Fundamentals of testing, Types of software testing, White-box, and black-box testing, test case design techniques, mutation testing and Testing metrics.",
-              ],
-            },
-            {
-              title: "UNIT-IV: Reliability & Quality Management",
-              hours: "10 Hrs",
-              topics: [
-                "Reliability: Software reliability metrics, reliability growth modelling.",
-                "Software Quality Management: Risk Management, Quality management, ISO and SEI CMMI, Six Sigma, Computer aided software engineering, Software maintenance, Software Configuration Management, Component-based software developments",
-              ],
-            },
-          ].map((unit, i) => (
-            <div
-              key={i}
-              className="group p-6 rounded-2xl border border-border/40 bg-card/50 hover:bg-accent/20 transition-all"
-            >
-              <div className="flex justify-between items-start mb-6">
-                <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
-                    Module 0{i + 1}
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Contents</h3>
+        <div className="space-y-3">
+          {units.map((unit, idx) => (
+            <div key={idx} className="p-4 rounded-lg border border-border/50 hover:border-primary/30 hover:bg-card/50 transition-all group">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <div>
+                  <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide bg-primary/10 text-primary rounded-full border border-primary/20 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    {unit.name}
                   </span>
-                  <h4 className="font-bold text-foreground text-lg tracking-tight">{unit.title}</h4>
+                  <h4 className="text-base md:text-lg font-bold mt-2 text-foreground">{unit.title}</h4>
                 </div>
-                <span className="text-[10px] font-mono font-bold bg-primary/10 text-primary px-3 py-1 rounded-full border border-primary/20">
-                  {unit.hours}
-                </span>
               </div>
-              <div className="space-y-1">
-                {unit.topics.map((topic, j) => (
-                  <CourseContentList key={j} content={topic} />
-                ))}
-              </div>
+              <p className="text-sm text-foreground/70 leading-relaxed ml-0">{unit.content}</p>
             </div>
           ))}
         </div>
-      </section>
-
-      <section className="space-y-4 border-t border-border/40 pt-8">
-        <h3 className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">Recommended Resources</h3>
-        <div className="grid gap-4 sm:grid-cols-2">
-          {[
-            "Pressman, 'Software Engineering: A Practitioner's Approach', 3rd Edn., TMH, 2004",
-            "Flecher and Hunt, 'Software Engineering and CASE: Bridging and Culture Gap', 2000.",
-          ].map((book, i) => (
-            <div key={i} className="flex gap-3 text-xs italic text-muted-foreground/80">
-              <span className="text-primary not-italic font-bold">[{i + 1}]</span>
-              {book}
-            </div>
-          ))}
-        </div>
-      </section>
+      </div>
     </div>
   )
 }
 
-function ComputerNetworksDetails() {
+function DistributedSystemsDetails() {
+  const objectives = [
+    "To understand the concepts, architecture, and design principles of distributed operating systems.",
+    "To learn about process and resource management in a distributed environment.",
+    "To understand synchronization and communication mechanisms in distributed systems.",
+    "To explore fault tolerance and security in distributed operating systems.",
+  ]
+
+  const units = [
+    {
+      name: "UNIT-I (12 Hrs.)",
+      title: "Distributed Operating Systems Fundamentals",
+      content: "Introduction to distributed systems, characteristics, advantages and challenges. System models: Workstations, Network model, Cluster model, Grid model. Communication: Point-to-point communication, message passing, RPC, Group communication. Naming: Flat naming, structured naming, attribute-based naming."
+    },
+    {
+      name: "UNIT-II (12 Hrs.)",
+      title: "Synchronization & Distributed Algorithms",
+      content: "Lamport's logical clocks, Vector clocks, Global state, Distributed snapshot, Mutual exclusion algorithms: Centralized, Token ring, Fully distributed. Election algorithms: Bully algorithm, Ring algorithm. Consensus algorithms and Byzantine generals problem."
+    },
+    {
+      name: "UNIT-III (10 Hrs.)",
+      title: "Process & Resource Management",
+      content: "Process migration and code mobility. Load balancing and scheduling in distributed systems. Resource management and allocation. Memory management in distributed systems. Distributed file systems: Architecture, caching, consistency models."
+    },
+    {
+      name: "UNIT-IV (11 Hrs.)",
+      title: "Fault Tolerance & Security",
+      content: "Reliability and fault tolerance: Failure models, failure detection, recovery techniques. Replication strategies: Primary-backup, Quorum-based. Distributed transactions and two-phase commit. Security in distributed systems: Authentication, authorization, encryption."
+    },
+  ]
+
   return (
-    <div className="space-y-12 text-sm leading-relaxed">
-      <section className="scroll-mt-24">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Code</h3>
-            <p className="font-mono font-bold">BCSES1-602</p>
-          </div>
-          <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">L-T-P-C</h3>
-            <p className="font-mono font-bold">3-1-0-4</p>
-          </div>
-          <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Duration</h3>
-            <p className="font-mono font-bold">60 Hours</p>
-          </div>
-          <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Semester</h3>
-            <p className="font-mono font-bold">6th</p>
-          </div>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Objectives</h3>
+        <div className="space-y-2">
+          {objectives.map((obj, idx) => (
+            <div key={idx} className="flex gap-3 p-3 rounded-lg border border-border/50 hover:bg-accent/5 hover:border-primary/30 transition-all group cursor-pointer">
+              <span className="text-primary font-bold text-sm mt-0.5 min-w-6 group-hover:scale-110 transition-transform">{idx + 1}.</span>
+              <p className="text-sm text-foreground/80 leading-relaxed">{obj}</p>
+            </div>
+          ))}
         </div>
-      </section>
-
-      <div className="grid md:grid-cols-2 gap-12">
-        <section className="space-y-4">
-          <h3 className="text-lg font-bold flex items-center gap-2">
-            <span className="h-6 w-1 bg-primary rounded-full" />
-            Course Objectives
-          </h3>
-          <ul className="space-y-3 list-none">
-            {[
-              "Develop understanding of modern network architectures from design and performance perspectives.",
-              "Provide an opportunity to do network programming.",
-              "Provide WLAN measurement ideas.",
-            ].map((obj, i) => (
-              <li key={i} className="flex gap-3 text-muted-foreground">
-                <span className="text-primary font-mono font-bold">{i + 1}.</span>
-                {obj}
-              </li>
-            ))}
-          </ul>
-        </section>
-
-        <section className="space-y-4">
-          <h3 className="text-lg font-bold flex items-center gap-2">
-            <span className="h-6 w-1 bg-primary rounded-full" />
-            Course Outcomes
-          </h3>
-          <ul className="space-y-3 list-none">
-            {[
-              "Explain functions of different layers of the OSI Protocol.",
-              "Draw functional block diagrams of WANs, LANs, and WLANs and describe functions.",
-              "Develop network programming for given TCP/IP protocol problems.",
-              "Configure DNS, TELNET, EMAIL, FTP, HTTP, SNMP, and Firewalls using open source tools.",
-            ].map((out, i) => (
-              <li key={i} className="flex gap-3 text-muted-foreground">
-                <span className="text-primary font-mono font-bold">{i + 1}.</span>
-                {out}
-              </li>
-            ))}
-          </ul>
-        </section>
       </div>
 
-      <section className="space-y-6">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Course Contents
-        </h3>
-        <div className="grid gap-6">
-          {[
-            {
-              unit: "I",
-              hours: "15 Hrs",
-              title: "Data Communication Components",
-              content:
-                "Representation of data and its flow Networks, Various Connection Topology, Protocols and Standards, OSI model, Transmission Media, LAN: Wired LAN, Wireless LANs, Connecting LAN and Virtual LAN, Techniques for Bandwidth utilization: Multiplexing - Frequency division, Time division and Wave division, Concepts on spread spectrum.",
-            },
-            {
-              unit: "II",
-              hours: "15 Hrs",
-              title: "Data Link Layer",
-              content:
-                "Medium Access Sub Layer: Error Detection and Error Correction - Fundamentals, Block coding, Hamming Distance, CRC; Flow Control and Error control protocols - Stop and Wait, Go back – N ARQ, Selective Repeat ARQ, Sliding Window, Piggybacking, Random Access, Multiple access protocols -Pure ALOHA, Slotted ALOHA, CSMA/CD, CDMA/CA",
-            },
-            {
-              unit: "III",
-              hours: "15 Hrs",
-              title: "Network & Transport Layer",
-              content:
-                "Network Layer: Switching, Logical addressing – IPV4, IPV6; Address mapping – ARP, RARP, BOOTP and DHCP – Delivery, Forwarding and Unicast Routing protocols. Transport Layer: Process to Process Communication, UDP, TCP, SCTP Congestion Control; Quality of Service, QoS improving techniques: Leaky Bucket and Token Bucket algorithm.",
-            },
-            {
-              unit: "IV",
-              hours: "15 Hrs",
-              title: "Application Layer & Cryptography",
-              content:
-                "Domain Name Space (DNS), DDNS, TELNET, EMAIL, File Transfer Protocol (FTP), WWW, HTTP, SNMP, Bluetooth, Firewalls, Basic concepts of Cryptography.",
-            },
-          ].map((item) => (
-            <div
-              key={item.unit}
-              className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
-            >
-              <div className="flex items-start justify-between mb-6">
-                <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
-                    Unit {item.unit}
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Contents</h3>
+        <div className="space-y-3">
+          {units.map((unit, idx) => (
+            <div key={idx} className="p-4 rounded-lg border border-border/50 hover:border-primary/30 hover:bg-card/50 transition-all group">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <div>
+                  <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide bg-primary/10 text-primary rounded-full border border-primary/20 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    {unit.name}
                   </span>
-                  <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
+                  <h4 className="text-base md:text-lg font-bold mt-2 text-foreground">{unit.title}</h4>
                 </div>
-                <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
-                  {item.hours}
-                </span>
               </div>
-              <CourseContentList content={item.content} />
+              <p className="text-sm text-foreground/70 leading-relaxed ml-0">{unit.content}</p>
             </div>
           ))}
         </div>
-      </section>
-
-      <section className="space-y-4">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Recommended Books
-        </h3>
-        <div className="grid gap-3 sm:grid-cols-2">
-          {[
-            "Data Communication and Networking, 4th Edition, Behrouz A. Forouzan, McGraw-Hill.",
-            "Data and Computer Communication, 8th Edition, William Stallings, Pearson Prentice Hall India.",
-          ].map((book, i) => (
-            <div key={i} className="p-4 rounded-xl border border-border/50 bg-accent/10 text-xs text-muted-foreground">
-              {book}
-            </div>
-          ))}
-        </div>
-      </section>
+      </div>
     </div>
   )
 }
 
-function ComputerNetworkLabDetails() {
+function RoboticsEngineeringDetails() {
+  const objectives = [
+    "To introduce the concept, scope, and socio-economic considerations of automation, emphasizing low-cost automation techniques.",
+    "To provide knowledge of fluid power control systems, including hydraulic and pneumatic components, circuits, and logic design.",
+    "To explore the fundamentals of electrical and electronic controls, including PLCs, sensors, and the integration of mechanical systems with computer and electronics.",
+    "To familiarize students with robotics, their classifications, components, sensors, and industrial applications for various operations.",
+  ]
+
+  const units = [
+    {
+      name: "UNIT-I (12 Hrs.)",
+      title: "Introduction & Fluid Power Control",
+      content: "Concept and scope of automation: Socio-economic consideration: Low cost automation. Fluid power control elements and standard graphical symbols. Construction and performance of fluid power generators. Hydraulic and pneumatic cylinders - construction, design and mounting. Hydraulic and pneumatic valves for pressure, flow and direction control. Servo valves and servo systems with mechanical feedback, servomm differential equation and its solution for step position input."
+    },
+    {
+      name: "UNIT-II (15 Hrs.)",
+      title: "Pneumatic Logic Circuits & Fluidics",
+      content: "Design of pneumatic logic circuits for a given time displacement diagram or sequence of operations. Boolean algebra. Truth tables. Conda effect. Fluidic elements - their construction working and performance characteristics. Elementary fluidic circuits."
+    },
+    {
+      name: "UNIT-III (10 Hrs.)",
+      title: "Transfer Devices, Feeders & Controls",
+      content: "Classification, Construction details and application of transfer devices and feeders (Vibratory bowl feeder, reciprocating tube feeder and centrifugal hopper feeder). Electrical and Electronic Controls: Introduction to electrical and electronic controls such as electromagnetic controllers - transducers and sensors, microprocessors, programmable logic controllers (PLC). Integration of mechanical systems with electrical, electronic and computer systems."
+    },
+    {
+      name: "UNIT-IV (8 Hrs.)",
+      title: "Robotics & Industrial Applications",
+      content: "Introduction, classification based on geometry, devices, control and path movement. End effectors - types and applications. Sensors - types and applications. Concept of Robotic/Machine vision, Teach pendant. Industrial Applications of Robots for material transfer, machine loading / unloading, welding, assembly and spray painting operations."
+    },
+  ]
+
   return (
-    <div className="space-y-12 text-sm leading-relaxed">
-      <div className="grid md:grid-cols-2 gap-12">
-        <section className="space-y-4">
-          <h3 className="text-lg font-bold flex items-center gap-2">
-            <span className="h-6 w-1 bg-primary rounded-full" />
-            Course Objective
-          </h3>
-          <p className="text-muted-foreground">
-            This practical course will enable students to implement networking in real world.
-          </p>
-        </section>
-
-        <section className="space-y-4">
-          <h3 className="text-lg font-bold flex items-center gap-2">
-            <span className="h-6 w-1 bg-primary rounded-full" />
-            Course Outcomes
-          </h3>
-          <ul className="space-y-3 list-none">
-            {[
-              "To become familiarize with different networking components.",
-              "To learn the concept of data transmission using different cables.",
-              "To learn different topologies and implement file sharing.",
-              "To implement different networks.",
-            ].map((out, i) => (
-              <li key={i} className="flex gap-3 text-muted-foreground">
-                <span className="text-primary font-mono font-bold">{i + 1}.</span>
-                {out}
-              </li>
-            ))}
-          </ul>
-        </section>
-      </div>
-
-      <section className="space-y-6">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Practical List
-        </h3>
-        <div className="grid gap-3">
-          {[
-            "Write specifications of latest desktops and laptops.",
-            "Familiarization with Networking Components and devices: LAN Adapters, Hubs, Switches, Routers etc.",
-            "Familiarization with Transmission media and Tools: Co-axial cable, UTP Cable, Crimping Tool, Connectors etc.",
-            "To Prepare straight and cross cables.",
-            "Study of various LAN topologies and their creation using network devices, cables and computers.",
-            "Configuration of TCP/IP Protocols in Windows and Linux.",
-            "Implementation of file and printer sharing.",
-            "Designing and implementing Class A, B, C Networks",
-            "Subnet planning and its implementation",
-            "Installation of ftp server and client",
-          ].map((item, i) => (
-            <div
-              key={i}
-              className="group flex items-center gap-4 p-4 rounded-xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
-            >
-              <span className="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg bg-primary/10 text-primary font-mono font-bold text-xs border border-primary/20">
-                {i + 1}
-              </span>
-              <p className="text-muted-foreground text-xs leading-relaxed">{item}</p>
+    <div className="space-y-8">
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Objectives</h3>
+        <div className="space-y-2">
+          {objectives.map((obj, idx) => (
+            <div key={idx} className="flex gap-3 p-3 rounded-lg border border-border/50 hover:bg-accent/5 hover:border-primary/30 transition-all group cursor-pointer">
+              <span className="text-primary font-bold text-sm mt-0.5 min-w-6 group-hover:scale-110 transition-transform">{idx + 1}.</span>
+              <p className="text-sm text-foreground/80 leading-relaxed">{obj}</p>
             </div>
           ))}
         </div>
-      </section>
-    </div>
-  )
-}
-
-function MobileAppDevelopmentDetails() {
-  return (
-    <div className="space-y-12 text-sm leading-relaxed">
-      <section className="scroll-mt-24">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Code</h3>
-            <p className="font-mono font-bold">BCSED1-611</p>
-          </div>
-          <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">L-T-P-C</h3>
-            <p className="font-mono font-bold">3-0-0-3</p>
-          </div>
-          <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Duration</h3>
-            <p className="font-mono font-bold">45 Hours</p>
-          </div>
-          <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-            <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Semester</h3>
-            <p className="font-mono font-bold">6th</p>
-          </div>
-        </div>
-      </section>
-
-      <div className="grid md:grid-cols-2 gap-12">
-        <section className="space-y-4">
-          <h3 className="text-lg font-bold flex items-center gap-2">
-            <span className="h-6 w-1 bg-primary rounded-full" />
-            Course Objective
-          </h3>
-          <p className="text-muted-foreground">
-            This course will help to manage mobile application data by integrating them with cloud services. This course
-            also helps to understand different testing methodologies for mobile application.
-          </p>
-        </section>
-
-        <section className="space-y-4">
-          <h3 className="text-lg font-bold flex items-center gap-2">
-            <span className="h-6 w-1 bg-primary rounded-full" />
-            Course Outcomes
-          </h3>
-          <ul className="space-y-3 list-none">
-            {[
-              "To learn application models of mobile application frameworks.",
-              "To learn Mobile OS architectures.",
-              "To be database access in different mobile OS.",
-              "To learn testing methodologies for mobile applications.",
-            ].map((out, i) => (
-              <li key={i} className="flex gap-3 text-muted-foreground">
-                <span className="text-primary font-mono font-bold">{i + 1}.</span>
-                {out}
-              </li>
-            ))}
-          </ul>
-        </section>
       </div>
 
-      <section className="space-y-6">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Course Contents
-        </h3>
-        <div className="grid gap-6">
-          {[
-            {
-              unit: "I",
-              hours: "11 Hrs",
-              title: "Introduction to Mobile Devices",
-              content:
-                "Introduction to mobile devices: Introduction to Mobile Computing, Introduction to Android Development Environment, Mobile devices vs. desktop devices, ARM and intel architectures, Power management, screen resolution, Touch interfaces, Application deployment, App Store, Google play, Windows Store.",
-            },
-            {
-              unit: "II",
-              hours: "11 Hrs",
-              title: "Mobile OS Architectures",
-              content:
-                "Mobile OS Architectures: Comparing and contrasting architectures of all three- Android, iOS and Windows, Underlying OS, Kernel structure and native level programming. Approaches to power management, Security.",
-            },
-            {
-              unit: "III",
-              hours: "12 Hrs",
-              title: "Android/iOS/Win8 Apps & Intents",
-              content:
-                "Android/iOS/Win8 Apps: DB Access, network access, contacts/ photos/ etc. Underneath the frameworks: Native level programming on Android, Low Level programming on iOS, Windows low level APIs. Intents and services: Android intents and services, characteristics of mobile applications, Successful mobile development.",
-            },
-            {
-              unit: "IV",
-              hours: "11 Hrs",
-              title: "Storing and Retrieving Data",
-              content:
-                "Storing and Retrieving data: Synchronization and replication of mobile data, Android storing and retrieving data, working with content provider, Putting it all together: packaging and deploying, Performance best practices, Android field service app.",
-            },
-          ].map((item) => (
-            <div
-              key={item.unit}
-              className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
-            >
-              <div className="flex items-start justify-between mb-6">
-                <div className="space-y-1">
-                  <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
-                    Unit {item.unit}
+      <div className="space-y-4">
+        <h3 className="text-lg md:text-xl font-bold text-foreground">Course Contents</h3>
+        <div className="space-y-3">
+          {units.map((unit, idx) => (
+            <div key={idx} className="p-4 rounded-lg border border-border/50 hover:border-primary/30 hover:bg-card/50 transition-all group">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <div>
+                  <span className="inline-block px-3 py-1 text-xs font-bold uppercase tracking-wide bg-primary/10 text-primary rounded-full border border-primary/20 group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+                    {unit.name}
                   </span>
-                  <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
+                  <h4 className="text-base md:text-lg font-bold mt-2 text-foreground">{unit.title}</h4>
                 </div>
-                <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
-                  {item.hours}
-                </span>
               </div>
-              <CourseContentList content={item.content} />
+              <p className="text-sm text-foreground/70 leading-relaxed ml-0">{unit.content}</p>
             </div>
           ))}
         </div>
-      </section>
+      </div>
     </div>
   )
 }
-
-// ADDED MACHINE LEARNING DETAILS COMPONENT
-const MachineLearningDetails = () => (
-  <div className="space-y-12">
-    <section className="grid sm:grid-cols-3 gap-6">
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Subject</h3>
-        <p className="font-mono font-bold">Machine Learning</p>
-        <p className="text-[10px] text-muted-foreground font-mono">BCSED1-612</p>
-      </div>
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Duration</h3>
-        <p className="font-mono font-bold">45 Hours</p>
-      </div>
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Semester</h3>
-        <p className="font-mono font-bold">6th</p>
-      </div>
-    </section>
-
-    <div className="grid md:grid-cols-2 gap-12">
-      <section className="space-y-4">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Course Objective
-        </h3>
-        <ul className="space-y-3 list-none">
-          {["To learn applications of machine learning.", "To learn different learning algorithms."].map((obj, i) => (
-            <li key={i} className="flex gap-3 text-muted-foreground">
-              <span className="text-primary font-mono font-bold">{i + 1}.</span>
-              {obj}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="space-y-4">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Course Outcomes
-        </h3>
-        <ul className="space-y-3 list-none">
-          {[
-            "To learn the concept of learning algorithm.",
-            "To learn supervise learning.",
-            "To learn unsupervised learning.",
-            "To learn about SVMs.",
-          ].map((out, i) => (
-            <li key={i} className="flex gap-3 text-muted-foreground">
-              <span className="text-primary font-mono font-bold">{i + 1}.</span>
-              {out}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-
-    <section className="space-y-6">
-      <h3 className="text-lg font-bold flex items-center gap-2">
-        <span className="h-6 w-1 bg-primary rounded-full" />
-        Course Contents
-      </h3>
-      <div className="grid gap-6">
-        {[
-          {
-            unit: "I",
-            hours: "12 Hrs",
-            title: "Introduction & Preparation of Model",
-            content:
-              "Introduction: Introduction to machine learning, use of machine learning, type of machine learning: supervised, unsupervised and reinforcement learning, Main challenges in machine learning. Preparation of Model: Introduction to Statistical Learning, Significance of Mean, Mode, Median, variance, standard deviation, Basic types of data in machine learning, Exploring structure of data, Data quality and remediation, Data pre-processing. Modelling and evaluation: Model Selection, Training, Model representation and interpretability, evaluating performance of a model.",
-          },
-          {
-            unit: "II",
-            hours: "08 Hrs",
-            title: "Supervised Learning",
-            content:
-              "Supervised Learning (Regression/Classification): Basic methods: Distance-based methods, Decision Trees, random forest model, Naive Bayes. Linear models: Simple Linear Regression, Multiple linear regression, Polynomial regression, Logistic Regression.",
-          },
-          {
-            unit: "III",
-            hours: "15 Hrs",
-            title: "Unsupervised Learning",
-            content:
-              "Unsupervised Learning (Clustering): Different types of clustering techniques, K-medoids, K-means/Kernel K-means, Hierarchical clustering. Dimensionality Reduction: Principal Component Analysis (PCA) and Linear Discriminant Analysis (LDA), Introduction to Matrix Factorization and Matrix Completion.",
-          },
-          {
-            unit: "IV",
-            hours: "10 Hrs",
-            title: "Support Vector Machines",
-            content:
-              "Support Vector Machines(SVM): Linear learning machines and Kernel space, Making Kernels and working in feature space, SVM for classification and regression problems. Recent trends in machine learning.",
-          },
-        ].map((item) => (
-          <div
-            key={item.unit}
-            className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
-          >
-            <div className="flex items-start justify-between mb-6">
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
-                  Unit {item.unit}
-                </span>
-                <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
-              </div>
-              <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
-                {item.hours}
-              </span>
-            </div>
-            <CourseContentList content={item.content} />
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section className="space-y-4">
-      <h3 className="text-lg font-bold flex items-center gap-2">
-        <span className="h-6 w-1 bg-primary rounded-full" />
-        Recommended Books
-      </h3>
-      <div className="grid sm:grid-cols-2 gap-4">
-        {[
-          {
-            author: "Saikat Dutt , Subramanian Chandramouli and Amit Kumar Das",
-            title: "Machine Learning",
-            publisher: "Pearson, 2019",
-          },
-          {
-            author: "Oliver Theobald",
-            title: "Machine Learning For Absolute Beginners: A Plain English Introduction",
-            publisher: "Second Edition",
-          },
-        ].map((book, i) => (
-          <div key={i} className="p-4 rounded-xl border border-border/50 bg-accent/10 space-y-1">
-            <h4 className="font-bold text-sm">
-              {i + 1}. {book.title}
-            </h4>
-            <p className="text-xs text-muted-foreground">
-              {book.author}, {book.publisher}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  </div>
-)
-
-const DataMiningDetails = () => (
-  <div className="space-y-12">
-    <section className="grid sm:grid-cols-3 gap-6">
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Subject</h3>
-        <p className="font-mono font-bold">Data Mining</p>
-        <p className="text-[10px] text-muted-foreground font-mono">BCSED1-621</p>
-      </div>
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Duration</h3>
-        <p className="font-mono font-bold">45 Hours</p>
-      </div>
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Semester</h3>
-        <p className="font-mono font-bold">6th</p>
-      </div>
-    </section>
-
-    <div className="grid md:grid-cols-2 gap-12">
-      <section className="space-y-4">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Course Objective
-        </h3>
-        <ul className="space-y-3 list-none">
-          {[
-            "To cover powerful data mining techniques including clustering, association rules, and classification.",
-            "Web mining is also introduced.",
-          ].map((obj, i) => (
-            <li key={i} className="flex gap-3 text-muted-foreground">
-              <span className="text-primary font-mono font-bold">{i + 1}.</span>
-              {obj}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="space-y-4">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Course Outcomes
-        </h3>
-        <ul className="space-y-3 list-none">
-          {[
-            "To introduce the basic concepts of Data Mining techniques.",
-            "To have knowledge of decision trees and algorithms used for it.",
-            "To learn the concept of search engines.",
-            "To understand web mining.",
-          ].map((out, i) => (
-            <li key={i} className="flex gap-3 text-muted-foreground">
-              <span className="text-primary font-mono font-bold">{i + 1}.</span>
-              {out}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-
-    <section className="space-y-6">
-      <h3 className="text-lg font-bold flex items-center gap-2">
-        <span className="h-6 w-1 bg-primary rounded-full" />
-        Course Contents
-      </h3>
-      <div className="grid gap-6">
-        {[
-          {
-            unit: "I",
-            hours: "12 Hrs",
-            title: "Data Mining Fundamentals",
-            content:
-              "Data Mining: Introduction to data mining, introduction to data warehousing, architecture of data warehouse, association rules in mining, Naive algorithm, Apriori algorithm, direct hashing and pruning (DHP), Dynamic Item set counting (DIC), Mining frequent pattern without candidate generation (FP, growth), performance evaluation of algorithms.",
-          },
-          {
-            unit: "II",
-            hours: "11 Hrs",
-            title: "Classification Techniques",
-            content:
-              "Classification: Introduction, decision tree, tree induction algorithms – split algorithm based on information theory, split algorithm based on Gini index; naïve Bayes method; estimating predictive accuracy of classification method.",
-          },
-          {
-            unit: "III",
-            hours: "11 Hrs",
-            title: "Cluster Analysis & Search Engines",
-            content:
-              "Cluster Analysis: Introduction, partitional methods, hierarchical methods, density based methods, dealing with large databases, cluster software; Search engines: Characteristics of Search engines, Search Engine Functionality, Search Engine Architecture, Ranking of web pages, The search engine history, Enterprise Search, Enterprise Search Engine Software.",
-          },
-          {
-            unit: "IV",
-            hours: "11 Hrs",
-            title: "Web Data Mining",
-            content:
-              "Web Data Mining: Web Terminology and Characteristics, Locality and Hierarchy in the web, Web Content Mining, Web Usage Mining, Web Structure Mining, Web mining Software.",
-          },
-        ].map((item) => (
-          <div
-            key={item.unit}
-            className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
-          >
-            <div className="flex items-start justify-between mb-6">
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
-                  Unit {item.unit}
-                </span>
-                <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
-              </div>
-              <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
-                {item.hours}
-              </span>
-            </div>
-            <CourseContentList content={item.content} />
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section className="space-y-4">
-      <h3 className="text-lg font-bold flex items-center gap-2">
-        <span className="h-6 w-1 bg-primary rounded-full" />
-        Recommended Books
-      </h3>
-      <div className="grid sm:grid-cols-2 gap-4">
-        {[
-          {
-            author: "Carlo Vercellis",
-            title: "Business Intelligence: Data Mining and Optimization for Decision Making",
-            publisher: "1st Edn., WILEY, 2009",
-          },
-          {
-            author: "J. Han, M. Kamber and J. Pei",
-            title: "Data Mining Concepts and Techniques",
-            publisher: "3rd Edn., Morgan Kaufmann Publishers, 2011",
-          },
-        ].map((book, i) => (
-          <div key={i} className="p-4 rounded-xl border border-border/50 bg-accent/10 space-y-1">
-            <h4 className="font-bold text-sm">
-              {i + 1}. {book.title}
-            </h4>
-            <p className="text-xs text-muted-foreground">
-              {book.author}, {book.publisher}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  </div>
-)
-
-const CloudComputingDetails = () => (
-  <div className="space-y-12">
-    <section className="grid sm:grid-cols-3 gap-6">
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Subject</h3>
-        <p className="font-mono font-bold">Cloud Computing</p>
-        <p className="text-[10px] text-muted-foreground font-mono">BCSED1-622</p>
-      </div>
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Duration</h3>
-        <p className="font-mono font-bold">45 Hours</p>
-      </div>
-      <div className="space-y-1 p-4 rounded-xl border border-border/50 bg-accent/30">
-        <h3 className="text-[10px] uppercase tracking-widest text-muted-foreground font-bold">Semester</h3>
-        <p className="font-mono font-bold">6th</p>
-      </div>
-    </section>
-
-    <div className="grid md:grid-cols-2 gap-12">
-      <section className="space-y-4">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Course Objective
-        </h3>
-        <ul className="space-y-3 list-none">
-          {[
-            "To understand what is cloud storage, characteristics of cloud computing.",
-            "To know about cloud computing services and cloud hosting, cloud data storage and deployment models.",
-            "To learn cloud computing companies and cloud service providers, cloud infrastructure.",
-            "To learn advantages of cloud computing and issues with cloud computing.",
-          ].map((obj, i) => (
-            <li key={i} className="flex gap-3 text-muted-foreground">
-              <span className="text-primary font-mono font-bold">{i + 1}.</span>
-              {obj}
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="space-y-4">
-        <h3 className="text-lg font-bold flex items-center gap-2">
-          <span className="h-6 w-1 bg-primary rounded-full" />
-          Course Outcomes
-        </h3>
-        <ul className="space-y-3 list-none">
-          {[
-            "To learn basic terms used in cloud computing and its benefits.",
-            "To learn architecture of Hadoop.",
-            "To implement cloud security.",
-            "To manage services provided by cloud.",
-          ].map((out, i) => (
-            <li key={i} className="flex gap-3 text-muted-foreground">
-              <span className="text-primary font-mono font-bold">{i + 1}.</span>
-              {out}
-            </li>
-          ))}
-        </ul>
-      </section>
-    </div>
-
-    <section className="space-y-6">
-      <h3 className="text-lg font-bold flex items-center gap-2">
-        <span className="h-6 w-1 bg-primary rounded-full" />
-        Course Contents
-      </h3>
-      <div className="grid gap-6">
-        {[
-          {
-            unit: "I",
-            hours: "12 Hrs",
-            title: "Cloud Computing Fundamentals",
-            content:
-              "Cloud Computing Fundamentals: Introduction to Cloud Computing, private, public and hybrid cloud. Cloud types: IaaS, PaaS, SaaS. Benefits and challenges of cloud computing, public vs private clouds, Role of virtualization in enabling the cloud; Benefits and challenges to Cloud architecture.",
-          },
-          {
-            unit: "II",
-            hours: "12 Hrs",
-            title: "Hadoop Ecosystem",
-            content:
-              "Hadoop - Apache Hadoop Architecture, Hadoop YARN, Comparison of Traditional system & Hadoop Ecosystem, Installation steps of Hadoop (1.x), Moving Data in and out of Hadoop, need for Record Reader and Record writer, understanding inputs and outputs, java for map reduce. Hadoop (2.x) - architecture, Comparison with Hadoop (1.x).",
-          },
-          {
-            unit: "III",
-            hours: "10 Hrs",
-            title: "Security & Open Source Clouds",
-            content: "Cloud Security and Trust Management, Open Source Clouds -Baadal, Open Stack, Cloud Stack.",
-          },
-          {
-            unit: "IV",
-            hours: "11 Hrs",
-            title: "Cloud Applications & Management",
-            content:
-              "Cloud Applications, Cloud Services Management: Reliability, availability and security of services deployed from the cloud. Performance and scalability of services, tools and technologies used to manage cloud services deployment, computing infrastructures available for implementing cloud based services.",
-          },
-        ].map((item) => (
-          <div
-            key={item.unit}
-            className="group p-8 rounded-2xl border border-border/50 bg-card hover:bg-accent/30 transition-all shadow-sm"
-          >
-            <div className="flex items-start justify-between mb-6">
-              <div className="space-y-1">
-                <span className="text-[10px] font-mono text-primary bg-primary/10 px-2 py-0.5 rounded border border-primary/30">
-                  Unit {item.unit}
-                </span>
-                <h4 className="text-xl font-bold tracking-tight">{item.title}</h4>
-              </div>
-              <span className="text-xs font-mono text-muted-foreground bg-muted/30 px-3 py-1 rounded-full border border-border/50 shadow-inner">
-                {item.hours}
-              </span>
-            </div>
-            <CourseContentList content={item.content} />
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <section className="space-y-4">
-      <h3 className="text-lg font-bold flex items-center gap-2">
-        <span className="h-6 w-1 bg-primary rounded-full" />
-        Recommended Books
-      </h3>
-      <div className="grid sm:grid-cols-2 gap-4">
-        {[
-          {
-            author: "Chris Eaton, Dirk deroos et al.",
-            title: "Understanding Big data",
-            publisher: "1st Edn., McGraw Hill, 2015",
-          },
-          {
-            author: "Tom White",
-            title: "HADOOP: The definitive Guide",
-            publisher: "4th Edn., O Reilly, 2015",
-          },
-          {
-            author: "Gautam Shroff",
-            title: "Enterprise Cloud Computing Technology Architecture Applications",
-            publisher: "1st Edn., Cambridge University Press, 2010",
-          },
-        ].map((book, i) => (
-          <div key={i} className="p-4 rounded-xl border border-border/50 bg-accent/10 space-y-1">
-            <h4 className="font-bold text-sm">
-              {i + 1}. {book.title}
-            </h4>
-            <p className="text-xs text-muted-foreground">
-              {book.author}, {book.publisher}
-            </p>
-          </div>
-        ))}
-      </div>
-    </section>
-  </div>
-)
 
 function SyllabusPageComponent() {
   const [seOpen, setSeOpen] = useState(false)
   const [cnOpen, setCnOpen] = useState(false)
-  const [cnLabOpen, setCnLabOpen] = useState(false)
+  const [nlOpen, setNlOpen] = useState(false)
   const [madOpen, setMadOpen] = useState(false)
-  // ADDED ML OPEN TO ANYOPEN CHECK
   const [mlOpen, setMlOpen] = useState(false)
   const [dmOpen, setDmOpen] = useState(false)
   const [ccOpen, setCcOpen] = useState(false)
+  const [resOpen, setResOpen] = useState(false)
+  const [robOpen, setRobOpen] = useState(false)
+  const [dosOpen, setDosOpen] = useState(false)
 
   useEffect(() => {
     const anyOpen = seOpen || cnOpen || cnLabOpen || madOpen || mlOpen || dmOpen || ccOpen
@@ -1236,10 +542,11 @@ function SyllabusPageComponent() {
       </section>
 
       <section className="mx-auto max-w-6xl px-6 py-32 border-t border-border/40">
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {[
-            { group: "Group II", options: electiveOptionsII, color: "from-primary/10 to-blue-50/50" },
-            { group: "Group III", options: electiveOptionsIII, color: "from-indigo-500/10 to-purple-50/50" },
+            { group: "Group II", options: electiveGroupsData[0].electives, color: "from-primary/10 to-blue-50/50" },
+            { group: "Group III", options: electiveGroupsData[1].electives, color: "from-indigo-500/10 to-purple-50/50" },
+            { group: "Group IV", options: electiveGroupsData[2].electives, color: "from-amber-500/10 to-orange-50/50" },
           ].map((item, i) => (
             <div
               key={i}
@@ -1304,6 +611,53 @@ function SyllabusPageComponent() {
                           </DialogHeader>
                           <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
                             <MobileAppDevelopmentDetails />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    )}
+                    {opt.code === "BCSED1-613" && (
+                      <Dialog open={dosOpen} onOpenChange={setDosOpen}>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 rounded-full border border-border/50 hover:bg-primary hover:text-primary-foreground group/btn shadow-sm text-[10px] font-bold uppercase tracking-wider"
+                          >
+                            Details
+                            <ArrowRight className="ml-1.5 h-3 w-3 group-hover/btn:translate-x-0.5 transition-transform" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setDosOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
+                            </div>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
+                          </DialogHeader>
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
+                            <DistributedSystemsDetails />
                           </div>
                         </DialogContent>
                       </Dialog>
@@ -1445,6 +799,100 @@ function SyllabusPageComponent() {
                           </DialogHeader>
                           <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
                             <CloudComputingDetails />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    )}
+                    {opt.code === "BELE0-F94" && (
+                      <Dialog open={resOpen} onOpenChange={setResOpen}>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 rounded-full border border-border/50 hover:bg-primary hover:text-primary-foreground group/btn shadow-sm text-[10px] font-bold uppercase tracking-wider"
+                          >
+                            Details
+                            <ArrowRight className="ml-1.5 h-3 w-3 group-hover/btn:translate-x-0.5 transition-transform" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setResOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
+                            </div>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
+                          </DialogHeader>
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
+                            <RenewableEnergySourcesToDetails />
+                          </div>
+                        </DialogContent>
+                      </Dialog>
+                    )}
+                    {opt.code === "BMEE0-F95" && (
+                      <Dialog open={robOpen} onOpenChange={setRobOpen}>
+                        <DialogTrigger asChild>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 rounded-full border border-border/50 hover:bg-primary hover:text-primary-foreground group/btn shadow-sm text-[10px] font-bold uppercase tracking-wider"
+                          >
+                            Details
+                            <ArrowRight className="ml-1.5 h-3 w-3 group-hover/btn:translate-x-0.5 transition-transform" />
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl h-[85vh] p-0 gap-0 border border-border/50 rounded-2xl shadow-2xl bg-background backdrop-blur-xl">
+                          <DialogHeader className="p-6 md:p-8 border-b border-border/50 flex flex-row items-center justify-between space-y-0 bg-card/50 backdrop-blur-md sticky top-0 z-50">
+                            <div className="flex items-center gap-4">
+                              <Button
+                                variant="ghost"
+                                size="icon"
+                                className="rounded-full border border-border/50 hover:bg-accent hover:text-foreground shadow-sm"
+                                onClick={() => setRobOpen(false)}
+                              >
+                                <ArrowLeft className="h-4 w-4" />
+                              </Button>
+                              <div className="space-y-0.5">
+                                <div className="flex items-center gap-2">
+                                  <BookOpen className="w-3 h-3 text-primary" />
+                                  <p className="text-[10px] uppercase tracking-[0.3em] text-primary font-bold">
+                                    Elective Archive
+                                  </p>
+                                </div>
+                                <DialogTitle className="text-xl md:text-2xl font-bold tracking-tight">
+                                  {opt.name}
+                                </DialogTitle>
+                              </div>
+                            </div>
+                            <div className="hidden sm:block">
+                              <span className="text-[10px] font-mono text-muted-foreground bg-muted/30 px-3 py-1.5 rounded-full border border-border/50 uppercase tracking-wider">
+                                {opt.code}
+                              </span>
+                            </div>
+                          </DialogHeader>
+                          <div className="flex-1 overflow-y-auto p-6 md:p-12 modal-scroll bg-gradient-to-b from-card/50 to-background">
+                            <RoboticsEngineeringDetails />
                           </div>
                         </DialogContent>
                       </Dialog>

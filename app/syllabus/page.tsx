@@ -355,14 +355,14 @@ function SyllabusPageComponent() {
   const [dosOpen, setDosOpen] = useState(false)
 
   useEffect(() => {
-    const anyOpen = seOpen || cnOpen || cnLabOpen || madOpen || mlOpen || dmOpen || ccOpen
+    const anyOpen = seOpen || cnOpen || nlOpen || madOpen || mlOpen || dmOpen || ccOpen || resOpen || robOpen || dosOpen
     if (!anyOpen) return
     const prevBodyOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
     return () => {
       document.body.style.overflow = prevBodyOverflow
     }
-  }, [seOpen, cnOpen, cnLabOpen, madOpen, mlOpen, dmOpen, ccOpen])
+  }, [seOpen, cnOpen, nlOpen, madOpen, mlOpen, dmOpen, ccOpen, resOpen, robOpen, dosOpen])
 
   const totals = {
     courses: courses.length,

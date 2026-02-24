@@ -529,6 +529,7 @@ function RoboticsEngineeringDetails() {
 function SyllabusPageComponent() {
   const [seOpen, setSeOpen] = useState(false)
   const [cnOpen, setCnOpen] = useState(false)
+  const [cnLabOpen, setCnLabOpen] = useState(false)
   const [nlOpen, setNlOpen] = useState(false)
   const [madOpen, setMadOpen] = useState(false)
   const [mlOpen, setMlOpen] = useState(false)
@@ -539,14 +540,14 @@ function SyllabusPageComponent() {
   const [dosOpen, setDosOpen] = useState(false)
 
   useEffect(() => {
-    const anyOpen = seOpen || cnOpen || nlOpen || madOpen || mlOpen || dmOpen || ccOpen || resOpen || robOpen || dosOpen
+    const anyOpen = seOpen || cnOpen || cnLabOpen || nlOpen || madOpen || mlOpen || dmOpen || ccOpen || resOpen || robOpen || dosOpen
     if (!anyOpen) return
     const prevBodyOverflow = document.body.style.overflow
     document.body.style.overflow = "hidden"
     return () => {
       document.body.style.overflow = prevBodyOverflow
     }
-  }, [seOpen, cnOpen, nlOpen, madOpen, mlOpen, dmOpen, ccOpen, resOpen, robOpen, dosOpen])
+  }, [seOpen, cnOpen, cnLabOpen, nlOpen, madOpen, mlOpen, dmOpen, ccOpen, resOpen, robOpen, dosOpen])
 
   const sum = (field: string): number => {
     return courses.reduce((acc, course) => acc + (course[field as keyof typeof course] as number || 0), 0)
